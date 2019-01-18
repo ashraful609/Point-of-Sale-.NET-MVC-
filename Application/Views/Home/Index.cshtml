@@ -1,0 +1,64 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Home Page";
+                string user_role = Session["user_role"].ToString();
+}
+
+<div class="jumbotron">
+    <h1>Simple POS</h1>
+    <p class="lead">Welcome <strong>@Session["username"]</strong>, you are logged in as <strong>@Session["user_role"]</strong> </p>
+    <span>See details of your functionality</span>
+</div>
+
+<div class="row">
+
+    @switch (user_role)
+    {
+        case "admin":
+            <div class="col-md-4">
+                <h2>User Management</h2>
+                <p>
+                    Manage users by create, read, update and Delete.
+                </p>
+                <p><a class="btn btn-default" href="~/Users/Index">Learn more &raquo;</a></p>
+            </div>
+            break;
+        case "manager":
+            <div class="col-md-4">
+                <h2>Inventory Management</h2>
+                <p>
+                    Manage Products by create, read, update and Delete.
+                </p>
+                <p><a class="btn btn-default" href="~/Products/Index">Learn more &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Product Category</h2>
+                <p>
+                    Manage Product category by create, read, update and Delete.
+                </p>
+                <p><a class="btn btn-default" href="~/Categories/Index">Learn more &raquo;</a></p>
+            </div>
+            break;
+        case "staff":
+            <div class="col-md-4">
+                <h2>Place Order</h2>
+                <p>
+                    Place orders and show orders.
+                </p>
+                <p><a class="btn btn-default" href="~/Orders/Index">Learn more &raquo;</a></p>
+            </div>
+            break;
+        default:
+            <div class="col-md-4">
+                <h2>Access Denied</h2>
+                <p>
+                    You cannot perform any action, require permission to proceed.
+                </p>
+                <p><a class="btn btn-default" href="~/Account/Logout">Learn more &raquo;</a></p>
+            </div>
+            break;
+
+    }
+</div>
